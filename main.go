@@ -1,6 +1,8 @@
 package main
 
 import (
+	"dfg_editor/controllers"
+
 	"github.com/gin-gonic/gin"
 
 	"context"
@@ -19,5 +21,10 @@ func init() {
 
 func main() {
 	r := gin.Default()
+
+	r.POST("/documents", controllers.CreateDocument)
+	r.GET("/documents/:id", controllers.GetDocument)
+	r.PUT("/documents/:id", controllers.DeleteDocument)
+	r.DELETE("/documents/:id", controllers.UpdateDocument)
 	r.Run(":8080")
 }

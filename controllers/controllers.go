@@ -1,13 +1,24 @@
-package main
+package controllers
 
 import (
 	"context"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
+
+var client *mongo.Client
+
+func init() {
+	// Set up MongoDB client
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	client, _ = mongo.Connect(context.Background(), clientOptions)
+}
 
 // CreateDocument creates a new document
 func CreateDocument(c *gin.Context) {

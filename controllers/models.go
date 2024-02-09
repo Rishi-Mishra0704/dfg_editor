@@ -1,4 +1,4 @@
-package main
+package controllers
 
 type Document struct {
 	ID      string `json:"id" bson:"_id,omitempty"`
